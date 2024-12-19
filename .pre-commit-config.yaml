@@ -1,0 +1,57 @@
+repos:
+  - repo: local
+    hooks:
+      # Run Isort
+      - id: isort
+        name: isort
+        entry: isort
+        language: system
+        types: [python]
+        pass_filenames: true
+        args: ["--profile", "black", "--check"]
+
+
+      # Run Black
+      - id: black
+        name: black
+        entry: black
+        language: system
+        types: [python]
+        pass_filenames: true
+        args: ["--check", "--diff"]
+
+      # Run Flake8
+      - id: pflake8
+        name: pflake8
+        entry: pflake8
+        language: system
+        types: [python]
+        pass_filenames: true
+        args: ["--config=./pyproject.toml"]
+
+      # Run Mypy
+      - id: mypy
+        name: mypy
+        entry: mypy
+        language: system
+        types: [python]
+        pass_filenames: false
+        args: ["--config-file", "pyproject.toml", "."]
+
+      # Run Pylint
+      - id: pylint
+        name: pylint
+        entry: pylint
+        language: system
+        types: [python]
+        pass_filenames: true
+        args: ["--rcfile=pyproject.toml"]
+
+      # Run Pytest
+      - id: pytest
+        name: pytest
+        entry: pytest
+        language: system
+        pass_filenames: false
+        always_run: true
+        args: ["--maxfail=1", "--disable-warnings"]

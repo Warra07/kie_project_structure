@@ -1,9 +1,12 @@
+from typing import Self, Tuple
+from xml.dom.minidom import Document
+
 from kie_base.schema.config import OcrConfig
 
 
 class Preprocesisng:
 
-    def execute_single(path: str) -> Tuple[Document, OcrConfig]:
+    def execute_single(self: Self, path: str) -> Tuple[Document, OcrConfig]:
         # TODO execute single
         """
 
@@ -13,7 +16,4 @@ class Preprocesisng:
 
         """
 
-    return None
-
-    def load_ocr_config() -> OcrConfig:
-        return
+        return Document(), OcrConfig()

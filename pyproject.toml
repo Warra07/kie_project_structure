@@ -12,7 +12,17 @@ authors = [{ name = "Wacim Belahcel", email = "wacim.belahcel@ekimetrics.com" }]
 dependencies = ["pydantic", "hydra-core", "numpy", "pandas"]
 
 [project.optional-dependencies]
-dev = ["black", "mypy", "flake8", "flake8-pyproject"]
+dev = [
+    "black",
+    "isort",
+    "mypy",
+    "pylint",
+    "flake8",
+    "flake8-pyproject",
+    "pytest",
+    "pytest-cov",
+    "pre-commit",
+]
 
 build = ["setuptools", "wheel"]
 
@@ -20,6 +30,11 @@ build = ["setuptools", "wheel"]
 [tool.black]
 line-length = 88
 target-version = ["py39"]
+exclude = '''
+/(
+    \.venv
+)/
+'''
 skip-string-normalization = true
 
 
@@ -27,8 +42,48 @@ skip-string-normalization = true
 strict = true
 ignore_missing_imports = true
 disable_error_code = []
-
+exclude = '''
+/(
+    \.venv
+    |tests/.*
+)/
+'''
 
 [tool.flake8]
-max-line-length = 100
-exclude = ["venv", "__pycache__"]
+max-line-length = 88
+exclude = ["venv", "*/.venv/*", "__pycache__", ".venv/*"]
+
+
+[tool.isort]
+profile = "black"                       # Makes isort compatible with Black
+line_length = 88
+known_third_party = ["numpy", "pandas"] # List common third-party libraries
+skip = [".venv"]
+
+
+[tool.pylint]
+load-plugins = [] # Add any plugins here if needed
+disable = [
+    "C0114", # Missing module docstring
+    "C0115", # Missing class docstring
+    "C0116", # Missing function docstring
+    "R0903", # Too few public methods (for data classes, etc.)
+    "C0103", # Variable name doesn't conform to snake_case
+    "R0801", # Duplicated code
+    "R0914", # Too many local variables
+]
+max-line-length = 88 # Match Black and Flake8
+good-names = ["i", "j", "k", "e", "f", "id", "df", "ok"] # Common short names
+extension-pkg-whitelist = [
+    "numpy",
+    "pandas",
+] # Allow extensions without complaints
+ignore = [".venv"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"] # Directory containing your tests
+addopts = "--strict-markers --disable-warnings --cov=my_project" # Strict mode and coverage
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks integration tests",
+]

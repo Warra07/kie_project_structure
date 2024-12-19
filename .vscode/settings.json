@@ -1,5 +1,9 @@
 {
     "python.formatting.provider": "black",
+    "python.sortImports.args": [
+        "--profile",
+        "black"
+    ],
     "python.linting.enabled": true,
     "python.linting.flake8Enabled": true,
     "python.linting.mypyEnabled": true,
@@ -10,11 +14,19 @@
         "--config-file",
         "pyproject.toml"
     ],
-    "python.linting.enabled": true,
-    "python.linting.mypyEnabled": true,
-    "python.linting.mypyArgs": [
-        "--config-file",
-        "pyproject.toml"
+    "python.linting.pylintArgs": [
+        "--rcfile=pyproject.toml"
     ],
-    "editor.formatOnSave": true
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true,
+    "python.testing.pytestArgs": [
+        "--strict-markers",
+        "--disable-warnings",
+        "--cov=kie_base"
+    ],
+    "editor.formatOnSave": true,
+    "python.pythonPath": "${workspaceFolder}\\.venv\\Scripts\\python.exe",
+    "terminal.integrated.env.windows": {
+        "PATH": "${workspaceFolder}\\.venv\\Scripts;${env:PATH}"
+    }
 }
