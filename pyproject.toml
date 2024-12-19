@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "key_information_extraction"
+version = "0.1.0"
+description = "the purpose of the project is to ingest pdfs and extract specific defined key information using azure doc AI and azure openAI solutions"
+authors = [{ name = "Wacim Belahcel", email = "wacim.belahcel@ekimetrics.com" }]
+
+
+dependencies = ["pydantic", "hydra-core", "numpy", "pandas"]
+
+[project.optional-dependencies]
+dev = ["black", "mypy", "flake8", "flake8-pyproject"]
+
+build = ["setuptools", "wheel"]
+
+
+[tool.black]
+line-length = 88
+target-version = ["py39"]
+skip-string-normalization = true
+
+
+[tool.mypy]
+strict = true
+ignore_missing_imports = true
+
+
+[tool.flake8]
+max-line-length = 10
+exclude = ["venv", "__pycache__"]
