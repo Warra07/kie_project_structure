@@ -1,0 +1,1 @@
+# kie_project_structure
