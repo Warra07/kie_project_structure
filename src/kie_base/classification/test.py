@@ -1,3 +1,2 @@
-def preprocessing_func(path: str) -> str:
-
+def preprocessing_func(path):
     return ""

@@ -10,5 +10,11 @@
         "--config-file",
         "pyproject.toml"
     ],
+    "python.linting.enabled": true,
+    "python.linting.mypyEnabled": true,
+    "python.linting.mypyArgs": [
+        "--config-file",
+        "pyproject.toml"
+    ],
     "editor.formatOnSave": true
 }
