@@ -28,5 +28,6 @@
     "python.pythonPath": "${workspaceFolder}\\.venv\\Scripts\\python.exe",
     "terminal.integrated.env.windows": {
         "PATH": "${workspaceFolder}\\.venv\\Scripts;${env:PATH}"
-    }
+    },
+    "autoDocstring.docstringFormat": "sphinx"
 }

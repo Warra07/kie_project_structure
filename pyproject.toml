@@ -71,6 +71,8 @@ disable = [
     "C0103", # Variable name doesn't conform to snake_case
     "R0801", # Duplicated code
     "R0914", # Too many local variables
+    "E0611", # No name in module
+    "W0105", # String statement has no effect
 ]
 max-line-length = 88 # Match Black and Flake8
 good-names = ["i", "j", "k", "e", "f", "id", "df", "ok"] # Common short names
